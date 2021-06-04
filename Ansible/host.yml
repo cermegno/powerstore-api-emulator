@@ -1,0 +1,22 @@
+---
+- name: Create a host
+  hosts: localhost
+  connection: local
+
+  vars_files:
+    - creds.yml
+    - prov_details.yml
+
+  tasks:
+  - name: Create host
+    dellemc_powerstore_host:
+      array_ip: "{{ target }}"
+      user: "{{ user }}"
+      password: "{{ password }}"
+      verifycert: False
+      host_name: "{{ host_name }}"
+      os_type: "{{ os_type }}"
+      initiators: "{{ initiators }}"
+      initiator_state: "present-in-host"
+      state: "present"
+

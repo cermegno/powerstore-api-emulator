@@ -1,0 +1,20 @@
+---
+- name: Create a host
+  hosts: localhost
+  connection: local
+
+  vars_files:
+    - creds.yml
+    - prov_details.yml
+
+  tasks:
+  - name: Create volume
+    dellemc_powerstore_volume:
+      array_ip: "{{ target }}"
+      user: "{{ user }}"
+      password: "{{ password }}"
+      verifycert: False
+      vol_name: "{{ vol_name }}"
+      size: "{{ size }}"
+      cap_unit: "{{ cap_unit }}"
+      state: "present"

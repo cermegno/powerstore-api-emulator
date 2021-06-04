@@ -1,0 +1,15 @@
+
+### Host details
+
+host_name: "demo01"
+os_type: "Linux"
+initiators:
+  - "21:00:00:24:ff:31:e9:01"
+  - "21:00:00:24:ff:31:e8:01"
+
+### Volume details
+
+vol_name: "demo01_vol1"
+size: "20"
+cap_unit: "GB"
+

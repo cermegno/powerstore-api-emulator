@@ -1,0 +1,491 @@
+{
+	"info": {
+		"_postman_id": "fe067a79-77ac-4cc8-8b2a-163c4169d839",
+		"name": "PowerStore API Emulator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get cluster basic",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{ip}}/api/rest/cluster",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"rest",
+						"cluster"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cluster",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{ip}}/api/rest/cluster?select=id,name,state,master_appliance_id",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"rest",
+						"cluster"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "id,name,state,master_appliance_id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"token\", pm.response.headers.get(\"DELL-EMC-TOKEN\"));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{ip}}/api/rest/event?select=id,severity,resource_type,generated_timestamp,description_l10n&order=resource_type.desc",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"rest",
+						"event"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "id,severity,resource_type,generated_timestamp,description_l10n"
+						},
+						{
+							"key": "order",
+							"value": "resource_type.desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get hosts - set token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"token\", pm.response.headers.get(\"DELL-EMC-TOKEN\"));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://{{ip}}/api/rest/host?select=id,name,description",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"rest",
+						"host"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "id,name,description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create host",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "DELL-EMC-TOKEN",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"a01\",\r\n    \"os_type\": \"Linux\",\r\n    \"initiators\": [\r\n        {\r\n            \"port_name\": \"21:00:00:24:ff:12:e9:aa\",\r\n            \"port_type\": \"FC\"\r\n        },\r\n        {\r\n            \"port_name\": \"21:00:00:24:ff:12:e9:bb\",\r\n            \"port_type\": \"FC\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{ip}}/api/rest/host",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"rest",
+						"host"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get volumes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{ip}}/api/rest/volume?select=id,name,size",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"rest",
+						"volume"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "id,name,size"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create volume",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "DELL-EMC-TOKEN",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"alberto01\",\r\n  \"size\": 1998848\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{ip}}/api/rest/volume",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"rest",
+						"volume"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "host volume mapping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{ip}}/api/rest/host_volume_mapping?select=id,host_id,volume_id",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"rest",
+						"host_volume_mapping"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "id,host_id,volume_id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "extend volume",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "DELL-EMC-TOKEN",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"size\": 19988480\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{ip}}/api/rest/volume/d89805ef-3d4f-421b-abb2-ef347ba26ef1",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"rest",
+						"volume",
+						"d89805ef-3d4f-421b-abb2-ef347ba26ef1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "attach volume to host",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "DELL-EMC-TOKEN",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"host_id\": \"be7f3c24-d692-4925-81d3-e758935f18da\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{ip}}/api/rest/volume/a86d940b-b01e-434f-bd9d-282b203d97ec/attach",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"rest",
+						"volume",
+						"a86d940b-b01e-434f-bd9d-282b203d97ec",
+						"attach"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "detach volume from host",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "DELL-EMC-TOKEN",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"host_id\": \"eddc532d-813d-48c1-9300-93005a3e4ea3\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{ip}}/api/rest/volume/352fe35b-138e-4ccb-884f-0a913517e2b2/detach",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"rest",
+						"volume",
+						"352fe35b-138e-4ccb-884f-0a913517e2b2",
+						"detach"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete volume",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "DELL-EMC-TOKEN",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{ip}}/api/rest/volume/d89805ef-3d4f-421b-abb2-ef347ba26ef1",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"rest",
+						"volume",
+						"d89805ef-3d4f-421b-abb2-ef347ba26ef1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete host",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "DELL-EMC-TOKEN",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{ip}}/api/rest/host/19894d22-87e1-4fef-9a04-5f1200aa65ac",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"path": [
+						"api",
+						"rest",
+						"host",
+						"19894d22-87e1-4fef-9a04-5f1200aa65ac"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "{{pwd}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

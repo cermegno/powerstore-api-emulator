@@ -1,0 +1,7 @@
+# Connection details for the PowerStore array
+# The emulator ignores the user/password
+# Adjust the "target" parameter to match the machine running the emulator
+
+target: "172.2.1.6"
+user: "student"
+password: "n0Pa$$w0rd"

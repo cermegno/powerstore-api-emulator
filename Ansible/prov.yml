@@ -1,0 +1,34 @@
+---
+- name: Create a host and a volume
+  hosts: localhost
+  connection: local
+
+  vars_files:
+    - creds.yml
+    - prov_details.yml
+
+  tasks:
+  - name: Create host
+    dellemc_powerstore_host:
+      array_ip: "{{ target }}"
+      user: "{{ user }}"
+      password: "{{ password }}"
+      verifycert: False
+      host_name: "{{ host_name }}"
+      os_type: "{{ os_type }}"
+      initiators: "{{ initiators }}"
+      initiator_state: "present-in-host"
+      state: "present"
+
+  - name: Create and map volume
+    dellemc_powerstore_volume:
+      array_ip: "{{ target }}"
+      user: "{{ user }}"
+      password: "{{ password }}"
+      verifycert: False
+      vol_name: "{{ vol_name }}"
+      size: "{{ size }}"
+      cap_unit: "{{ cap_unit }}"
+      host: "{{ host_name }}"
+      mapping_state: "mapped"
+      state: "present"
