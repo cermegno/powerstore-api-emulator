@@ -18,7 +18,7 @@ It allows you to get familiar with the basics programming with the DellEMC Power
 - DELETE /volume/<vol_id>
 - GET /host_volume_mapping
 
-Information for the cluster and the event calls is static but the information about hosts, volumes and mappings can be edited through the API calls. It lives in memory and it will last until you stop the emulator
+Information for the cluster and the event calls is static but the information about hosts, volumes and mappings can be edited through the API calls. Data is imported from the "data.py" file, loaded into memory and lasts until you stop the emulator. Changes are not persisted for the next run
 
 In order to help you interact with the emulator the following resources have been provided:
  - Sample collection in the Postman folder
