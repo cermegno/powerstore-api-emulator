@@ -1,5 +1,5 @@
 # powerstore-api-emulator
-Basic emulator of DellEMC PowerStore REST API provisioning functions
+Basic emulator of DellEMC PowerStore REST API provisioning functions developed for educational purposes
 
 ## Description
 It allows you to get familiar with the basics programming with the DellEMC PowerStore REST API. It implements the following API calls that cover some basic information gathering and the fundamentals of block provisioning:
@@ -25,8 +25,11 @@ In order to help you interact with the emulator the following resources have bee
  - Sample playbooks in the Ansible folder. The playbooks successfully behave idempotently like the real array. As playbooks run you can see all the different API calls the Ansible modules perform in order to ensure idempotency
 
 ## Requirements
-It has been developed with Python 3.9.2. It has also been tested with Python 3.6.8
-Python package requirements are mostly Flask and PyOpenSSL. You can install the specific versions with the attached requirements.txt
+The code has been developed with Python 3.9.2. It has also been tested with Python 3.6.8
+
+Python package requirements are mostly Flask and PyOpenSSL. You can install the specific versions with the included requirements.txt
+
+The Ansible playbooks have been tested with Ansible version 2.9.9 and version 1.1 of the PowerStore Ansible modules
 
 ## Known limitations
 - Only a single field will be used for matching
@@ -35,4 +38,9 @@ Python package requirements are mostly Flask and PyOpenSSL. You can install the 
 - Not checking whether a host has volume mappings during a DELETE /volume
 - Not enforcing mandatory parameters when creating resources
 - ... and a few more
+
+## DellEMC PowerStore REST API documentation
+This is the link to the [official PowerStore REST API developer's guide](https://downloads.dell.com/manuals/common/pwrstr-apig_en-us.pdf) from the DellEMC site
+
+You can [download the Ansible modules for PowerStore](https://github.com/dell/ansible-powerstore) in the Dell GitHub page. This page also provides instructions instructions on how to install the Ansible modules
 
