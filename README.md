@@ -29,7 +29,7 @@ The code has been developed with Python 3.9.2. It has also been tested with Pyth
 
 Python package requirements are mostly Flask and PyOpenSSL. You can install the specific versions with the included requirements.txt
 
-The Ansible playbooks have been tested with Ansible version 2.9.9 and version 1.1 of the PowerStore Ansible modules. Other users have tested successfully Ansible modules version 1.2.1 as well. However some changes were introduced in version 1.4.0 that will try to make use of certain API calls (such as /logout, /login_session and /software_installed) that are not implemented in the emulator and will cause the Ansible modules to fail. So please avoid 1.4.0 and later
+The Ansible playbooks were developed and tested with Ansible version 2.9.9 and version 1.1 of the PowerStore Ansible modules and corresponding Python library. Other users have tested successfully Ansible modules version 1.2.1 as well. However version 1.4.0 will try to make use of certain API calls (such as /logout, /login_session and /software_installed) that are not implemented in the emulator and will cause the Ansible modules to fail. So please avoid 1.4.0 and later
 
 ## Known limitations
 - Only a single field will be used for matching
